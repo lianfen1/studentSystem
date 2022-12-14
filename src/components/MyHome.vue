@@ -46,8 +46,9 @@ export default {
     
   }
   .home-main-body {
-      height: 600px;
+      height: 800px;
       padding: 15px;
+      background-color: white;
       flex: 1;
     }
     .footer{

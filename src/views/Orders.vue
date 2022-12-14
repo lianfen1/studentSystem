@@ -1,5 +1,5 @@
 <template>
-  <h1 class="text-center">订单管理</h1>
+  <h1 class="text-center" style="color:black;">订单管理</h1>
 </template>
 
 <script>

@@ -24,7 +24,7 @@
             <td>{{item.stu_address}}</td>
             <td>
               <span @click="deleteStu(item.stu_number)"><a href="javascript:;" @click="($store.dispatch('mysqldel',item.stu_number))">删除</a>&nbsp;&nbsp;&nbsp;</span>
-              <router-link to="/home/addUser" @click="$store.commit('rewords',item.number)">修改</router-link>
+              <router-link to="/home/addUser"  @click="$store.commit('rewords',item.stu_number)">修改</router-link>
             </td>
           </tr>
         </tbody>
@@ -34,20 +34,23 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import axios from 'axios';
 export default {
     data(){
       return {
-        // studentList:this.$store.state.studentList,
+        studentList:[],
         newStu:[],
         searchKey:''
       }
     },
     methods:{
       filterStu(){
-       this.newStu=this.studentList.filter(item=>{
-        this.newStu=[]
-        return (item.stu_name.includes(this.searchKey))||(item.stu_number.includes(this.searchKey))
+            axios.post('http://127.0.0.1/backstage/api_pagetotal.php').then(({ data }) => {
+                  this.studentList=data
+            })
+            this.newStu=this.studentList.filter(item=>{
+              this.newStu=[]
+              return (item.stu_name.includes(this.searchKey))||(item.stu_number.includes(this.searchKey))
         })
       },
       deleteStu(id){
@@ -57,13 +60,7 @@ export default {
           }
         })
       }
-    },
-   created(){
-    this.$store.dispatch('getList')
-  },
-  computed:{
-    ...mapState(['studentList'])
-  }
+    }
    
 }
 </script>

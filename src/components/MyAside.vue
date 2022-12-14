@@ -45,12 +45,12 @@ export default {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
       'Helvetica Neue', sans-serif;
     &:hover {
-      background-color: #efefef;
+      background-image: linear-gradient(to right, rgba(0, 185, 167, 0), #90f7ec, rgba(0, 185, 167, 0));
       cursor: pointer;
     }
     a {
       display: block;
-      color: black;
+      color: white!important;
       padding-left: 30px;
       &:hover {
         text-decoration: none;
@@ -61,9 +61,10 @@ export default {
 
 // 设置路由高亮效果
 .router-link-active {
-  background-color: #efefef;
+  background-image: linear-gradient(to right, rgba(0, 185, 167, 0), rgb(144, 247, 236), rgba(0, 185, 167, 0));
   box-sizing: border-box;
   position: relative;
+  color: #42b983!important;
   // 伪元素实现路由高亮效果
   &::before {
     content: ' ';

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="box">
       <table class="table table-hover">
         <thead>
           <tr>
@@ -22,7 +22,6 @@
             <td>
               <a href="javascript:;" @click="($store.dispatch('mysqldel',item.stu_number))">删除</a>&nbsp;&nbsp;&nbsp;
               <router-link to="/home/addUser"  @click="$store.commit('rewords',item.stu_number)">修改</router-link>
-
             </td>
           </tr>
         </tbody>
@@ -96,4 +95,7 @@ export default {
 </script>
 
 <style scoped>
+ .box{
+  background-color: aliceblue;
+ }
 </style>

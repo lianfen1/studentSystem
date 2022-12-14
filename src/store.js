@@ -78,12 +78,24 @@ let store = createStore({
             state.stu_name = ''
             state.stu_major = ''
             state.stu_address = ''
+        },
+        update(state, id) {
+            state.studentList.filter(item => {
+                if (item.id == id) {
+                    item.stu_number = state.stu_number
+                    item.stu_name = state.stu_name
+                    item.stu_major = state.stu_major
+                }
+            })
+            state.stu_number = ''
+            state.stu_name = ''
+            state.stu_major = ''
         }
     },
     actions: {
         // 查询数据库函数
         getList(context) {
-            axios.post('http://localhost/vueUser/backstage/api_getstu.php', qs.stringify({
+            axios.post('http://localhost/backstage/api_getstu.php', qs.stringify({
                 pageSize: this.state.pageSize,
                 pageNow: this.state.pageNow
             })).then(({ data }) => {
@@ -95,7 +107,7 @@ let store = createStore({
             if (this.state.stu_number == "" && this.state.stu_name == "" && this.state.stu_major == "" && this.state.stu_address == "") {
                 return alert('请输入姓名或学或学号或专业')
             }
-            axios.post('http://localhost/vueUser/backstage/api_add.php', qs.stringify({
+            axios.post('http://localhost/backstage/api_add.php', qs.stringify({
                 stu_name: this.state.stu_name,
                 stu_number: this.state.stu_number,
                 stu_major: this.state.stu_major,
@@ -121,7 +133,7 @@ let store = createStore({
         },
         // 删除数据库函数
         mysqldel(context, stu_number) {
-            axios.delete('http://127.0.0.1/vueUser/backstage/api_del.php', { params: { stu_number: stu_number } }).then(({ data }) => {
+            axios.delete('http://127.0.0.1/backstage/api_del.php', { params: { stu_number: stu_number } }).then(({ data }) => {
                 if (data.trim() == 'yes') {
                     alert('删除成功')
                     context.commit('del', stu_number)
@@ -133,7 +145,7 @@ let store = createStore({
         },
         // 修改数据库函数
         mysqludp(context, stu_number) {
-            axios.post('http://localhost/vueUser/backstage/api_upd.php', qs.stringify({
+            axios.post('http://localhost/backstage/api_upd.php', qs.stringify({
                 stu_name: this.state.stu_name,
                 stu_number: this.state.stu_number,
                 stu_major: this.state.stu_major,
@@ -151,7 +163,7 @@ let store = createStore({
         },
         // 请求分页查询数据
         load(context) {
-            axios.post('http://127.0.0.1/vueUser/backstage/api_pagetotal.php').then(({ data }) => {
+            axios.post('http://127.0.0.1/backstage/api_pagetotal.php').then(({ data }) => {
                 this.state.pageTotal = data.length
                 this.state.pageCount = Math.ceil(data.length / this.state.pageSize)
             })

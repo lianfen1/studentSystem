@@ -13,6 +13,6 @@ export default {
     height: 100px;
     text-align: center;
     line-height: 100px;
-    background-color: rgb(201, 201, 201);
+    background:linear-gradient(to right,#92FFC0,#002661);
    }
 </style>
